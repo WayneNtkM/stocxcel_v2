@@ -1,14 +1,21 @@
-// import Image from "next/image";
-// import { StocksSorted } from "../types/objectTypes";
-// import { AiOutlineArrowUp } from 'react-icons/ai';
-// import { trpc } from "@/backend/application/tRPCServer";
+import Image from "next/image";
+// import { type StocksSorted } from "../types/objectTypes";
+import { AiOutlineArrowUp } from 'react-icons/ai';
+import { api } from "~/utils/api";
+
+export interface StocksSorted {
+  change: number;
+  close: number;
+  logo: string;
+  stock: string;
+}
 
 function Carousel() {
-  // const { data } = trpc.stocks.useQuery();
+  const { data } = api.stocks.stocks.useQuery();
 
   return (
     <div className="w-[100%] overflow-hidden h-[100px] relative grid mb-8">
-        {/* <div className="flex w-calc animate-carousel">
+        <div className="flex w-calc animate-carousel">
           {data?.sorted.map(({ change, close, logo, stock}: StocksSorted) => (
             <div className="flex pl-[30px] w-[350px]" key={stock}>
               <Image
@@ -28,7 +35,7 @@ function Carousel() {
               </div>
             </div>
           ))}
-        </div> */}
+        </div>
     </div>
   );
 }
